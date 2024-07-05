@@ -1,0 +1,80 @@
+<!-- templates/products.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorted Products</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #282c34;
+            color: #61dafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #20232a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 1200px;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #61dafb;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .product-name {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .product-details {
+            margin-bottom: 10px;
+        }
+        .product a {
+            color: #61dafb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .product a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sorted Products</h1>
+        {% for product in products %}
+        <div class="product">
+            {% if product.img_url %}
+            <img src="{{ product.img_url }}" alt="{{ product.name }}">
+            {% endif %}
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-details">
+                <strong>Rating:</strong> {{ product.rating }}<br>
+                <strong>Price:</strong> {{ product.price }}
+            </div>
+            <a href="{%url 'details' product.product_url%}">View Product</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
